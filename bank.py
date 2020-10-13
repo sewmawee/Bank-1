@@ -155,7 +155,152 @@ def main():
     
 
 
-   
+    elif choice == 'Loan Granting':
+        st.info("Prediction if Customer is suitable to grant bank loan")
+        age = st.number_input("Age",18,100)
+        job   = st.selectbox("Occupation", tuple(job_dict.keys()) )
+        balance = st.text_input("Savings account balance:")
+        loan	 = st.radio("Has taken personal loan?", tuple(feature_dict.keys()) )
+        day = st.number_input("Which day of the month were they contacted?", 1, 31)
+        month	 = st.selectbox("Whiich month was the client last contacted in? ",tuple(month_dict.keys()) )
+        pdays = st.text_input("Number of days that passed by after the client was last contacted(-1 if not contacted) " )
+        previous = st.text_input("Number of contacts performed before this campaign and for this client " )
+        ifCreatedAccount	 = st.radio("Has a Fixed Deposit Account?", tuple(feature_dict.keys()) )
+
+        feature_list = [age,get_value(job,job_dict),balance,get_fvalue(loan), day, get_value(month, month_dict),pdays, previous, get_fvalue(ifCreatedAccount)]
+        single_sample = np.array(feature_list).reshape(1,-1)
+
+
+        model_choice = st.selectbox("Select Model",["Random Forest Classification","Decision Tree Classifier", "KNN Classifier"])
+
+        st.text("")
+	
+        if st.button("Predict Outcome"):
+            if model_choice == "Random Forest Classification":
+                prediction = C_RF_classifier.predict(single_sample)
+                pred_prob = C_RF_classifier.predict_proba(single_sample)
+            # elif model_choice == "Decision Tree Classifier":
+            #     prediction = C_DT_classifier.predict(single_sample)
+            #     pred_prob = C_DT_classifier.predict_proba(single_sample)
+            # else:
+            #     prediction = C_KNN_classifier.predict(single_sample)
+            #     pred_prob = C_KNN_classifier.predict_proba(single_sample)
+
+            if prediction == 1:
+                st.text("")
+                st.warning("Customer isn't suitable to give a loan")
+                C_pred_probability_score = {"Won't have a credit balance":pred_prob[0][0]*100,"Will have a credit balance":pred_prob[0][1]*100}
+                #st.markdown(result_temp,unsafe_allow_html=True)
+                st.text("")
+                st.subheader("Prediction Probability Score using {}".format(model_choice))
+                st.info(C_pred_probability_score)
+                	
+							
+            else:
+                st.text("")
+                st.success("Customer is suitable to give a loan")
+                C_pred_probability_scoreY = {"Won't have a credit balance":pred_prob[0][0]*100,"Will have a credit balance":pred_prob[0][1]*100}
+                #st.markdown(result_temp,unsafe_allow_html=True)
+                st.text("")
+                st.subheader("Prediction Probability Score using {}".format(model_choice))
+                st.json(C_pred_probability_scoreY)    
+
+    elif choice == 'Predict Housing Loan Necessity':
+        st.info("Prediction if Customer will need a Housing Loan")
+        age = st.number_input("Age",18,100)
+        job   = st.selectbox("Occupation", tuple(job_dict.keys()) )
+        education = st.selectbox("Education", tuple(edu_dict.keys()))
+        balance = st.text_input("Savings account balance:")
+        month	 = st.selectbox("Whiich month was the client last contacted in? ",tuple(month_dict.keys()) )
+        pdays = st.text_input("Number of days that passed by after the client was last contacted(-1 if not contacted) " )
+        ifCreatedAccount	 = st.radio("Has a Fixed Deposit Account?", tuple(feature_dict.keys()) )
+
+        feature_list = [age,get_value(job,job_dict),get_value(education, edu_dict), balance, get_value(month, month_dict),pdays,get_fvalue(ifCreatedAccount)]
+        single_sample = np.array(feature_list).reshape(1,-1)
+
+
+        model_choice = st.selectbox("Select Model",["Random Forest Classification","Decision Tree Classifier", "KNN Classifier"])
+
+        st.text("")
+	
+        if st.button("Predict Outcome"):
+            if model_choice == "Random Forest Classification":
+                prediction = H_RF_classifier.predict(single_sample)
+                pred_prob = H_RF_classifier.predict_proba(single_sample)
+            # elif model_choice == "Decision Tree Classifier":
+            #     prediction = H_DT_classifier.predict(single_sample)
+            #     pred_prob = H_DT_classifier.predict_proba(single_sample)
+            # else:
+            #     prediction = H_KNN_classifier.predict(single_sample)
+            #     pred_prob = H_KNN_classifier.predict_proba(single_sample)
+
+            if prediction == 0:
+                st.text("")
+                st.warning("Customer won't need a housing loan")
+                H_pred_probability_score = {"Won't need housing loan":pred_prob[0][0]*100,"May need housing loan":pred_prob[0][1]*100}
+                #st.markdown(result_temp,unsafe_allow_html=True)
+                st.text("")
+                st.subheader("Prediction Probability Score using {}".format(model_choice))
+                st.info(H_pred_probability_score)
+                	
+							
+            else:
+                st.text("")
+                st.success("Customer may need a housing loan")
+                H_pred_probability_scoreY = {"Won't need housing loan":pred_prob[0][0]*100,"May need housing loan":pred_prob[0][1]*100}
+                #st.markdown(result_temp,unsafe_allow_html=True)
+                st.text("")
+                st.subheader("Prediction Probability Score using {}".format(model_choice))
+                st.json(H_pred_probability_scoreY)
+
+    elif choice == 'Predict Personal Loan Necessity':
+        st.info("Prediction if Customer will need a Personal Loan")
+        education = st.selectbox("Education", tuple(edu_dict.keys()))
+        job   = st.selectbox("Occupation", tuple(job_dict.keys()) )
+        month	 = st.selectbox("Whiich month was the client last contacted in? ",tuple(month_dict.keys()) ) 
+        default	 = st.radio("Has a credit balance in a loan?", tuple(feature_dict.keys()) )
+        balance = st.text_input("Savings account balance:")
+        ifCreatedAccount	 = st.radio("Has a Fixed Deposit Account?", tuple(feature_dict.keys()) )
+
+        feature_list = [get_value(education, edu_dict), get_value(job,job_dict), get_fvalue(default), get_value(month, month_dict),balance,get_fvalue(ifCreatedAccount)]
+        single_sample = np.array(feature_list).reshape(1,-1)
+
+
+        model_choice = st.selectbox("Select Model",["Random Forest Classification","Decision Tree Classifier", "KNN Classifier"])
+
+        st.text("")
+	
+        if st.button("Predict Outcome"):
+            if model_choice == "Random Forest Classification":
+                prediction = P_RF_classifier .predict(single_sample)
+                pred_prob = P_RF_classifier .predict_proba(single_sample)
+            # elif model_choice == "Decision Tree Classifier":
+            #     prediction = P_DT_classifier.predict(single_sample)
+            #     pred_prob = P_DT_classifier.predict_proba(single_sample)
+            # else:
+            #     prediction = P_KNN_classifier.predict(single_sample)
+            #     pred_prob = P_KNN_classifier.predict_proba(single_sample)
+
+            if prediction == 0:
+                st.text("")
+                st.warning("Customer won't need a personal loan")
+                L_pred_probability_score = {"Won't need personal loan":pred_prob[0][0]*100,"May need personal loan":pred_prob[0][1]*100}
+                #st.markdown(result_temp,unsafe_allow_html=True)
+                st.text("")
+                st.subheader("Prediction Probability Score using {}".format(model_choice))
+                st.info(L_pred_probability_score)
+                	
+							
+            else:
+                st.text("")
+                st.success("Customer may need a housing loan")
+                L_pred_probability_scoreY = {"Won't need personal loan":pred_prob[0][0]*100,"May need personal loan":pred_prob[0][1]*100}
+                #st.markdown(result_temp,unsafe_allow_html=True)
+                st.text("")
+                st.subheader("Prediction Probability Score using {}".format(model_choice))
+                st.json(L_pred_probability_scoreY)    				
+
+
     elif choice == 'Home':
        # st.markdown("<h1 style='text-align: center; color: black; font-size: 60px'>Bank Data Analysis 🏦</h1>", unsafe_allow_html=True)
         
