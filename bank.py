@@ -19,13 +19,13 @@ RF_classifier =pickle.load(RF_pickle_in)
 
 #decision tree model
 
-DT_pickle_in = open("FD-DecisionTreeClassifier.pkl","rb")
-DT_classifier=pickle.load(DT_pickle_in)
+# DT_pickle_in = open("FD-DecisionTreeClassifier.pkl","rb")
+# DT_classifier=pickle.load(DT_pickle_in)
 
 #KNN model
 
-KNN_pickle_in = open("FD-KNNClassifier.pkl","rb")
-KNN_classifier=pickle.load(KNN_pickle_in)
+# KNN_pickle_in = open("FD-KNNClassifier.pkl","rb")
+# KNN_classifier=pickle.load(KNN_pickle_in)
 
 #2. TO CHECK IF CUSTOMER HAS A CREDIT BALANCE OR NOT
 C_RF_pickle_in = open("Cred-RFclassifier.pkl","rb")
@@ -33,27 +33,27 @@ C_RF_classifier =pickle.load(C_RF_pickle_in)
 
 #decision tree model
 
-C_DT_pickle_in = open("Cred-DTClassifier.pkl","rb")
-C_DT_classifier=pickle.load(C_DT_pickle_in)
+# C_DT_pickle_in = open("Cred-DTClassifier.pkl","rb")
+# C_DT_classifier=pickle.load(C_DT_pickle_in)
 
 #KNN model
 
-C_KNN_pickle_in = open("Cred-KNNClassifier.pkl","rb")
-C_KNN_classifier=pickle.load(C_KNN_pickle_in)
+# C_KNN_pickle_in = open("Cred-KNNClassifier.pkl","rb")
+# C_KNN_classifier=pickle.load(C_KNN_pickle_in)
 
-#3. TO CHECK IF CUSTOMER WILL TAKE A HOUSING LOAN OR NOT
-H_RF_pickle_in = open("H-RandomForestC.pkl","rb")
-H_RF_classifier =pickle.load(H_RF_pickle_in)
+# #3. TO CHECK IF CUSTOMER WILL TAKE A HOUSING LOAN OR NOT
+ H_RF_pickle_in = open("H-RandomForestC.pkl","rb")
+ H_RF_classifier =pickle.load(H_RF_pickle_in)
 
 #decision tree model
 
-H_DT_pickle_in = open("H-DTClassifier.pkl","rb")
-H_DT_classifier=pickle.load(H_DT_pickle_in)
+# H_DT_pickle_in = open("H-DTClassifier.pkl","rb")
+# H_DT_classifier=pickle.load(H_DT_pickle_in)
 
-#KNN model
+# #KNN model
 
-H_KNN_pickle_in = open("H-KNNClassifier.pkl","rb")
-H_KNN_classifier=pickle.load(H_KNN_pickle_in)
+# H_KNN_pickle_in = open("H-KNNClassifier.pkl","rb")
+# H_KNN_classifier=pickle.load(H_KNN_pickle_in)
 
 #4. TO CHECK IF CUSTOMER WILL TAKE A PERSONAL LOAN OR NOT
 
@@ -62,13 +62,13 @@ P_RF_classifier =pickle.load(P_RF_pickle_in)
 
 #decision tree model
 
-P_DT_pickle_in = open("PL_DecisionTreeClassifier.pkl","rb")
-P_DT_classifier=pickle.load(P_DT_pickle_in)
+# P_DT_pickle_in = open("PL_DecisionTreeClassifier.pkl","rb")
+# P_DT_classifier=pickle.load(P_DT_pickle_in)
 
-#KNN model
+# #KNN model
 
-P_KNN_pickle_in = open("PL_KNNClassifier.pkl","rb")
-P_KNN_classifier=pickle.load(P_KNN_pickle_in)
+# P_KNN_pickle_in = open("PL_KNNClassifier.pkl","rb")
+# P_KNN_classifier=pickle.load(P_KNN_pickle_in)
 
 #allocate number for select options
 month_dict = {'January': 1, 'February': 2,'March':3,'April': 4,'May': 5, 'June': 6, 'July': 7, 'August': 8, 'September': 9,'October':10,'November': 11,'December': 12}
@@ -126,12 +126,12 @@ def main():
             if model_choice == "Random Forest Classification":
                 prediction = RF_classifier.predict(single_sample)
                 pred_prob = RF_classifier.predict_proba(single_sample)
-            elif model_choice == "Decision Tree Classifier":
-                prediction = DT_classifier.predict(single_sample)
-                pred_prob = DT_classifier.predict_proba(single_sample)
-            else:
-                prediction = KNN_classifier.predict(single_sample)
-                pred_prob = KNN_classifier.predict_proba(single_sample)
+            # elif model_choice == "Decision Tree Classifier":
+            #     prediction = DT_classifier.predict(single_sample)
+            #     pred_prob = DT_classifier.predict_proba(single_sample)
+            # else:
+            #     prediction = KNN_classifier.predict(single_sample)
+            #     pred_prob = KNN_classifier.predict_proba(single_sample)
 
             if prediction == 0:
                 st.text("")
@@ -179,12 +179,12 @@ def main():
             if model_choice == "Random Forest Classification":
                 prediction = C_RF_classifier.predict(single_sample)
                 pred_prob = C_RF_classifier.predict_proba(single_sample)
-            elif model_choice == "Decision Tree Classifier":
-                prediction = C_DT_classifier.predict(single_sample)
-                pred_prob = C_DT_classifier.predict_proba(single_sample)
-            else:
-                prediction = C_KNN_classifier.predict(single_sample)
-                pred_prob = C_KNN_classifier.predict_proba(single_sample)
+            # elif model_choice == "Decision Tree Classifier":
+            #     prediction = C_DT_classifier.predict(single_sample)
+            #     pred_prob = C_DT_classifier.predict_proba(single_sample)
+            # else:
+            #     prediction = C_KNN_classifier.predict(single_sample)
+            #     pred_prob = C_KNN_classifier.predict_proba(single_sample)
 
             if prediction == 1:
                 st.text("")
@@ -227,12 +227,12 @@ def main():
             if model_choice == "Random Forest Classification":
                 prediction = H_RF_classifier.predict(single_sample)
                 pred_prob = H_RF_classifier.predict_proba(single_sample)
-            elif model_choice == "Decision Tree Classifier":
-                prediction = H_DT_classifier.predict(single_sample)
-                pred_prob = H_DT_classifier.predict_proba(single_sample)
-            else:
-                prediction = H_KNN_classifier.predict(single_sample)
-                pred_prob = H_KNN_classifier.predict_proba(single_sample)
+            # elif model_choice == "Decision Tree Classifier":
+            #     prediction = H_DT_classifier.predict(single_sample)
+            #     pred_prob = H_DT_classifier.predict_proba(single_sample)
+            # else:
+            #     prediction = H_KNN_classifier.predict(single_sample)
+            #     pred_prob = H_KNN_classifier.predict_proba(single_sample)
 
             if prediction == 0:
                 st.text("")
@@ -274,12 +274,12 @@ def main():
             if model_choice == "Random Forest Classification":
                 prediction = P_RF_classifier .predict(single_sample)
                 pred_prob = P_RF_classifier .predict_proba(single_sample)
-            elif model_choice == "Decision Tree Classifier":
-                prediction = P_DT_classifier.predict(single_sample)
-                pred_prob = P_DT_classifier.predict_proba(single_sample)
-            else:
-                prediction = P_KNN_classifier.predict(single_sample)
-                pred_prob = P_KNN_classifier.predict_proba(single_sample)
+            # elif model_choice == "Decision Tree Classifier":
+            #     prediction = P_DT_classifier.predict(single_sample)
+            #     pred_prob = P_DT_classifier.predict_proba(single_sample)
+            # else:
+            #     prediction = P_KNN_classifier.predict(single_sample)
+            #     pred_prob = P_KNN_classifier.predict_proba(single_sample)
 
             if prediction == 0:
                 st.text("")
