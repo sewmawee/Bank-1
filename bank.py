@@ -42,8 +42,8 @@ C_RF_classifier =pickle.load(C_RF_pickle_in)
 # C_KNN_classifier=pickle.load(C_KNN_pickle_in)
 
 # #3. TO CHECK IF CUSTOMER WILL TAKE A HOUSING LOAN OR NOT
- H_RF_pickle_in = open("H-RandomForestC.pkl","rb")
- H_RF_classifier =pickle.load(H_RF_pickle_in)
+H_RF_pickle_in = open("H-RandomForestC.pkl","rb")
+H_RF_classifier =pickle.load(H_RF_pickle_in)
 
 #decision tree model
 
