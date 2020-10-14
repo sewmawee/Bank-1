@@ -75,7 +75,7 @@ month_dict = {'January': 1, 'February': 2,'March':3,'April': 4,'May': 5, 'June':
 feature_dict = {"No":0,"Yes":1}
 job_dict = {'blue-collar': 1, 'management': 2,'technician':3,'admin.': 4,'services': 5, 'retired': 6, 'self-employed': 7, 'entrepreneur': 8, 'unemployed': 9,'housemaid':10,'student': 11,'unknown': 12}
 edu_dict = {'primary': 1, 'secondary': 2,'tertiary':3,'unknown': 0} 
-
+@st.cache(persist=True)
 def get_value(val,my_dict):
 	for key,value in my_dict.items():
 		if val == key:
