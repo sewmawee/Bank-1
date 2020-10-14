@@ -1,1 +1,1 @@
-web: sh setup.sh && streamlit run bank.py
+web: sh setup.sh && streamlit --optimize_for_size --max_old_space_size=460 --gc_interval=100 run bank.py
